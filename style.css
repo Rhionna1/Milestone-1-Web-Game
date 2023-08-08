@@ -1,0 +1,14 @@
+/* CSS styling for game board STARTS HERE */
+
+#gameBoard{
+    border: 3px solid;
+}
+
+#scoreText{
+    font-family: "consolas", monospace;
+    font-size: 100px;
+}
+#resetBtn{
+    font-family: "consolas", monospace;
+}
+/* CSS styling for game board ENDS HEERE */
