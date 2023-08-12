@@ -11,7 +11,7 @@ const paddle1Color = "lightblue";
 const paddle2Color = "red"; 
 const paddleBoarder = "black";
 const ballColor = "yellow";
-const ballBoarderColor: "black";
+const ballBoarderColor = "black";
 const ballRadius = 12.5;
 const paddleSpeed = 60;
 //constant variables end here
@@ -88,9 +88,26 @@ function drawPaddles(){
 
 };
 //paddle design function ends here
-function createBall(){};
+//createBall function starts here
+function createBall(){
+    ballSpeed = 1;
+    if()
+};
+//createBall function ends here
+//moveBall function starts here
 function moveBall(){};
-function drawBall(){};
+//moveBall function ends here
+//drawBall function starts here
+function drawBall(ballX, ballY){
+    ctx.fillstyle = ballColor;
+    ctx.strokeStyle = ballBoarderColor;
+    ctx.lineWidth = 2;
+    ctx.beginPath ();
+    ctx.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fill();
+};
+//drawBall function ends here
 function checkCollision(){};
 //changeDirection function starts here
 function changeDirection(event){
@@ -100,7 +117,7 @@ function changeDirection(event){
     const paddle2Up =38;
     const paddle2Down = 40;
 //press "S" to move down press "W" to move up for user
-    //up and down user paddle abilities start here
+    //up and down paddle1 abilities start here
     switch(keyPressed){
         case(paddle1Up):
             if(paddle1.y > 0){
@@ -112,10 +129,21 @@ function changeDirection(event){
             paddle1.y += paddleSpeed;
             }
             break;
+         //up and down paddle1 abilities end here
+        //paddle 2 up and down controls start here
+        case(paddle2Up):
+            if (paddle2.y > 0){
+            paddle2.y -= paddleSpeed;
+            }
+            break;
+        case(paddle2Down):
+            if (paddle2.y < gameHeight - paddle2.height){
+            paddle2.y += paddleSpeed;
+            }
+            break;
+        //paddle2 up/down controls end here
 
     }
-    //up and down user paddle abilities end here
-
 };
 //changeDirection function ends here
 function updateScore(){};
