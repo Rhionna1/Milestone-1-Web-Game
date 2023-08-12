@@ -50,12 +50,12 @@ resetBtn.addEventListener("click", resetGame);
 //all functions start here
 gameStart ();
 
-// game start function starts here
+// gamestart function starts here
 function gameStart(){
     createBall();
     nextTick();
 };
-// game end function starts here
+// gameStart function ends here
 //nexTick function starts here
 function nextTick(){
     intervalID = setTimeout (() => {
@@ -68,7 +68,12 @@ function nextTick(){
     }, 10)
 };
 //nexTick function ends here
-function clearBoard(){};
+//clearBoard function starts here
+function clearBoard(){
+    ctx.fillstyle = boardBackground; 
+    ctx.fillRect(0, 0, gameWidth, gameHeight);
+};
+//clearBoard function ends here
 //paddle design function starts here
 function drawPaddles(){
     ctx.strokeStyle = paddleBoarder;
@@ -87,7 +92,32 @@ function createBall(){};
 function moveBall(){};
 function drawBall(){};
 function checkCollision(){};
-function changeDirection(){};
+//changeDirection function starts here
+function changeDirection(event){
+    const keyPressed = event.keyCode;
+    const paddle1Up = 87;
+    const paddle1Down = 83;
+    const paddle2Up =38;
+    const paddle2Down = 40;
+//press "S" to move down press "W" to move up for user
+    //up and down user paddle abilities start here
+    switch(keyPressed){
+        case(paddle1Up):
+            if(paddle1.y > 0){
+            paddle1.y -= paddleSpeed;
+            }
+            break;
+        case(paddle1Down):
+            if (paddle1.y < gameHeight - paddle1.height){
+            paddle1.y += paddleSpeed;
+            }
+            break;
+
+    }
+    //up and down user paddle abilities end here
+
+};
+//changeDirection function ends here
 function updateScore(){};
 function resetGame(){};
 //all functions end here
