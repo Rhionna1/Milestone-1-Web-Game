@@ -125,7 +125,44 @@ function drawBall(ballX, ballY){
     ctx.fill();
 };
 //drawBall function ends here
-function checkCollision(){};
+//checkCollision function starts here
+function checkCollision(){
+    if(ballY <= 0 + ballRadius){
+        ballYDirection *= -1;
+    }
+    if (ballY >= gameHeight - ballRadius){
+        ballYDirection *= -1;
+    }
+    if (ballX <= 0){
+        player2Score+=1;
+        updateScore();
+        createBall();
+        return;
+    }
+    if (ballX >= gameWidth){
+        player1Score+=1;
+        updateScore();
+        createBall();
+        return;
+    }
+    //ball bouncing off paddles IF statement starts here
+    if (ballX <= (paddle1.x + paddle1.width + ballRadius)){
+        if(ballY > paddle1.y && ballY < paddle1.y + paddle1.height){
+            ballX = (paddle1.x + paddle1.width) + ballRadius; //if ball gets stuck
+            ballXDirection *= -1;
+            ballSpeed += 1;
+        }
+    }
+    if (ballX >= (paddle2.x - ballRadius)){
+        if(ballY > paddle2.y && ballY < paddle2.y + paddle2.height){
+            ballX = paddle2.x - ballRadius; //if ball gets stuck
+            ballXDirection *= -1;
+            ballSpeed += 1;
+        }
+    }
+    //ball bouncing off paddles IF statement ends here
+};
+//checkCollision function ends here
 //changeDirection function starts here
 function changeDirection(event){
     const keyPressed = event.keyCode;
@@ -163,7 +200,13 @@ function changeDirection(event){
     }
 };
 //changeDirection function ends here
-function updateScore(){};
+//updateScore function starts here
+function updateScore(){
+    scoreText.textContent = '${player1Score} : {player2Score}';
+};
+//updateScore function ends here
+//reset game function starts here
 function resetGame(){};
+//reset game function ends here
 //all functions end here
 
