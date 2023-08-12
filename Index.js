@@ -91,11 +91,28 @@ function drawPaddles(){
 //createBall function starts here
 function createBall(){
     ballSpeed = 1;
-    if()
+    if(Math.round(Math.random()) ==1){
+        ballXDirection = 1;
+    }
+    else{
+        ballXDirection = -1;  
+    }
+    if(Math.round(Math.random()) ==1){
+        ballYDirection = 1;
+    }
+    else{
+        ballYDirection = -1;  
+    }
+    ballX = gameWidth / 2;
+    ballY = gameHeight / 2; 
+    drawBall(ballX, ballY);  
 };
 //createBall function ends here
 //moveBall function starts here
-function moveBall(){};
+function moveBall(){
+    ballX += (ballSpeed * ballXDirection);
+    ballY += (ballSpeed * ballYDirection);
+};
 //moveBall function ends here
 //drawBall function starts here
 function drawBall(ballX, ballY){
