@@ -47,11 +47,27 @@ window.addEventListener("keydown", changeDirection);
 resetBtn.addEventListener("click", resetGame);
 //Event listenter for Keydown and reset button ends here
 
-//functions start here
+//all functions start here
 gameStart ();
 
-function gameStart(){};
-function nextTick(){};
+// game start function starts here
+function gameStart(){
+    createBall();
+    nextTick();
+};
+// game end function starts here
+//nexTick function starts here
+function nextTick(){
+    intervalID = setTimeout (() => {
+        clearBoard ();
+        drawPaddles();
+        moveBall();
+        drawBall(ballX, ballY);
+        checkCollision();
+        nextTick();
+    }, 10)
+};
+//nexTick function ends here
 function clearBoard(){};
 //paddle design function starts here
 function drawPaddles(){
@@ -74,5 +90,5 @@ function checkCollision(){};
 function changeDirection(){};
 function updateScore(){};
 function resetGame(){};
-//functions start here
+//all functions end here
 
