@@ -17,6 +17,7 @@
     width: 100px;
     height: 50px;
     border: 4px solid;
-    border-radius: pointer;
+    border-radius: 15px;
+    cursor: pointer;
 }
 /* CSS styling for game board ENDS HEERE */

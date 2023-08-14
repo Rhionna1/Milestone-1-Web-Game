@@ -1,7 +1,7 @@
+document.addEventListener('DOMContentLoaded', function(){
 //declaring constant variables
-
-const gameBoard = document.querySelector (#gameBoard);
-const ctx = gameBoard.getContext ("2d");
+const gameBoard = document.querySelector("#gameBoard");
+const ctx = gameBoard.getContext("2d");
 const scoreText = document.querySelector("#scoreText");
 const resetBtn = document.querySelector("#resetBtn");
 const gameWidth = gameBoard.width;
@@ -13,11 +13,11 @@ const paddleBoarder = "black";
 const ballColor = "yellow";
 const ballBoarderColor = "black";
 const ballRadius = 12.5;
-const paddleSpeed = 60;
+const paddleSpeed = 50;
 //constant variables end here
 //declaring other variables start here
 let intervalID; 
-let ballSpeed = 1;
+let ballSpeed;
 let ballX = gameWidth / 2;
 let ballY = gameHeight / 2;
 let ballXDirection = 0;
@@ -48,7 +48,7 @@ resetBtn.addEventListener("click", resetGame);
 //Event listenter for Keydown and reset button ends here
 
 //all functions start here
-gameStart ();
+gameStart();
 
 // gamestart function starts here
 function gameStart(){
@@ -59,7 +59,7 @@ function gameStart(){
 //nexTick function starts here
 function nextTick(){
     intervalID = setTimeout (() => {
-        clearBoard ();
+        clearBoard();
         drawPaddles();
         moveBall();
         drawBall(ballX, ballY);
@@ -85,7 +85,6 @@ function drawPaddles(){
     ctx.fillstyle = paddle2Color;
     ctx.fillRect(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
     ctx.strokeRect(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
-
 };
 //paddle design function ends here
 //createBall function starts here
@@ -206,7 +205,30 @@ function updateScore(){
 };
 //updateScore function ends here
 //reset game function starts here
-function resetGame(){};
+function resetGame(){
+    player1Score = 0;
+    player2Score =0;
+    paddle1 = {
+        width: 25,
+        height: 100,
+        x: 0,
+        y: 0
+    };
+    paddle2 = {
+        width: 25,
+        height: 100,
+        x: gameWidth -25,
+        y: gameHeight -100
+    };
+    ballSpeed = 1; 
+    ballX = 0; 
+    ballY = 0;
+    ballXDirection = 0; 
+    ballYDirection = 0;
+    updateScore();
+    clearInterval(intervalID);
+    gameStart();
+};
 //reset game function ends here
 //all functions end here
-
+})
