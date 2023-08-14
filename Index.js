@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){
+// document.addEventListener('DOMContentLoaded', function(){
 //declaring constant variables
 const gameBoard = document.querySelector("#gameBoard");
 const ctx = gameBoard.getContext("2d");
@@ -231,4 +231,3 @@ function resetGame(){
 };
 //reset game function ends here
 //all functions end here
-})
