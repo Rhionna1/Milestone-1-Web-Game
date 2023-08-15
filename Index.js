@@ -64,7 +64,7 @@ var Game = {
 
         Pong.menu();
         Pong.listen();
-    }
+    },
 
     endGameMenu: function(text) {
         //at the end of the game the canva, font size, and color will change
@@ -250,8 +250,20 @@ var Game = {
                 this.ball.height
             );
         }
+        //draw dotted line down the middle
+        this.context.beginPath();
+        this.context.setLineDash([7, 15]);
+        this.context.moveTo((this.canvas.width / 2), this.canvas.height -140);
+        this.context.lineTo((this.canvas.width / 2), 140);
+        this.context.lineWidth = 10;
+        this.context.strokeStyle = '#ffffff';
+        this.context.stroke();
 
+        //default background
+        this.context.font = '100px Courier New';
+        this.context.textAlign = 'center';
 
+        
     }
 };
 
