@@ -1,3 +1,34 @@
+//declaring variables
+var DIRECTION = {
+    IDLE: 0,
+    UP: 1,
+    DOWN: 2, 
+    LEFT 3, 
+    RIGHT 4
+};
+
+var rounds = [5,5,3,3,2];
+var colors = ['#12104B, #237A1B, #AA66DD, #8c52ff, #2ecc71'];
+
+//function for ball
+var Ball = {
+    new: function (incrementedSpeed) {
+        return {
+            width: 18
+            height: 18
+            x: (this.canvas.width /2)-9,
+            y: (this.canvas.height /2)-9,
+            moveX: DIRECTION.IDLE, 
+            moveY: DIRECTION.IDLE,
+            speed: incrementedSpeed || 7
+        };
+    }
+};
+
+
+
+
+
 // // document.addEventListener('DOMContentLoaded', function(){
 // //declaring constant variables
 // const gameBoard = document.querySelector("#gameBoard");
