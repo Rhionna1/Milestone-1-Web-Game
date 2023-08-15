@@ -163,8 +163,41 @@ var Game = {
 
             //cpu wall collision
             if (this.ai.y >= this.canvas.height - this.ai.height) this.ai.y = this.canvas.height - this.ai.height;
-            else if (this.ai.y <= 0) this.ai.y = 0
+            else if (this.ai.y <= 0) this.ai.y = 0;
+
+            //player1 ball collisions
+            if(this.ball.x - this.ball.width <= this.player.x && this.ball.x >= this.player.x - this.player.width){
+                if(this.ball.y <= this.player.y + this.player.height && this.ball.y >= this.player.x - this.player.width){
+                    this.ball.x = (this.player.x + this.ball.width);
+                    this.ball.moveX = DIRECTION.RIGHT;
+                }
+            }
+            //cpu ball collisions
+            if(this.ball.x - this.ball.width <= this.ai.x && this.ball.x >= this.ai.x - this.ai.width){
+                if(this.ball.y <= this.ai.y + this.ai.height && this.ball.y + this.ball.height >= this.ai.y){
+                    this.ball.x = (this.ai.x - this.ball.width);
+                    this.ball.moveX = DIRECTION.LEFT;
+                }
+            }
+            
         }
+        //if the player won the end of the round.
+        if(this.player.score === rounds [this.round]) {
+          //check for any more levels and display winner screen
+          if(!rounds[this.round + 1]) {
+            this.over = true;
+            setTimeout(function () { Pong.endGameMenu('CONGRATZ, YOU WON!'); }, 1000);
+            //if we still have rounds to go then we reset everything and change the round number
+          } else {
+            this.color = this._generateRoundColor();
+            this.player.score = this.ai.score = 0;
+            this.player.speed += 0.5;
+            this.ai.speed += 1;
+            this.ball.speed += 1;
+            this.round += 1;
+          }
+        }
+        
     }
 
 };
