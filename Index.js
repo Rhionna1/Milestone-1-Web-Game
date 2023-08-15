@@ -203,7 +203,56 @@ var Game = {
             setTimeout (function (){ Pong.endGameMenu ('You Suck!'); }, 1000);
         }
     },
+    //putting objects on to the canvas 
+    draw: function () {
+        //clears canvas
+        this.context.clearRect(
+            0,
+            0,
+            this.canvas.width,
+            this.canvas.height
+        );
+        //fill style = black
+        this.context.fillStyle = this.color;
 
+        //makes background on canvas
+        this.context.fillRect (
+            0,
+            0,
+            this.canvas.width,
+            this.canvas.height
+        );
+
+        //fill color for paddles and balls, currently white
+        this.context.fillStyle = '#ffffff';
+
+        //draw player1 paddle
+        this.context.fillRect (
+            this.player.x,
+            this.player.y,
+            this.player.width, 
+            this.player.height
+        );
+        //draw cpu paddle
+        this.context.fillRect (
+            this.ai.x,
+            this.ai.y,
+            this.ai.width, 
+            this.ai.height
+        );
+
+        //draw the ball
+        if (Pong._turnDelayIsOver.call(this)) {
+            this.context.fillRect (
+                this.ball.x,
+                this.ball.y,
+                this.ball.width,
+                this.ball.height
+            );
+        }
+
+
+    }
 };
 
 
