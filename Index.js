@@ -25,6 +25,28 @@ var Ball = {
     }
 };
 
+//Function for the two lines that move up and down
+var Ai = {
+    new: function (side){
+        return {
+            width: 18,
+            height: 180, 
+            x: side === 'left' ? 150: this.canvas.width -150, 
+            y: (this.canvas.height / 2) - 35, 
+            score: 0, 
+            move: DIRECTION.IDLE, 
+            speed: 8
+
+        };
+    }
+};
+//calling 
+var Game = {
+    initialize: function () {
+        this.canvas = document.querySelector('canvas');
+        this.context = this.canvas.getContext('2d');
+    }
+};
 
 
 
