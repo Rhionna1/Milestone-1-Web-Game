@@ -140,6 +140,10 @@ var Game = {
                 this.ball.y = Math.floor(Math.random() * this.canvas.height - 200) + 200;
                 this.turn = null;
             }
+
+            //player collides with bounds of game, update the x/y coordinates
+            if(this.player.y <= 0) this.player.y = 0;
+            else if(this.player.y >= (this.canvas.height - this.player.height)) this.player.y = (this.canvas.height - this.player.height);
         }
     }
 
