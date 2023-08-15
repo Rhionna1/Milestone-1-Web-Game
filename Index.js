@@ -197,8 +197,12 @@ var Game = {
             this.round += 1;
           }
         }
-        
-    }
+        //check to see if cpu won the round/game
+        else if (this.ai.score === rounds[this.round]) {
+            this.over = true; 
+            setTimeout (function (){ Pong.endGameMenu ('You Suck!'); }, 1000);
+        }
+    },
 
 };
 
