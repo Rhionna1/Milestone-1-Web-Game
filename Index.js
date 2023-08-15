@@ -263,8 +263,39 @@ var Game = {
         this.context.font = '100px Courier New';
         this.context.textAlign = 'center';
 
-        
-    }
+        //players score display
+        this.context.fillText(
+            this.player.score.toString(),
+            (this.canvas.width / 2) - 300,
+            200
+        );
+        //paddle score
+        this.context.fillText(
+            this.ai.score.toString(),
+            (this.canvas.width / 2) + 300, 
+            200
+        );
+
+        //change size of text for center score board
+        this.context.font = '30px Courier New';
+
+        //winning score in the middle
+        this.context.fillText(
+            'Round' + (Pong.round + 1),
+            (this.canvas.width / 2),
+            35
+        );
+        //font size for center score
+        this.context.font = '40px Courier';
+
+        //draw current number
+        this.context.fillText(
+            rounds[Pong.round] ? rounds[Pong.round] : rounds[Pong.round - 1],
+            (this.canvas.width / 2),
+            100
+        );
+    },
+    loop: 
 };
 
 
