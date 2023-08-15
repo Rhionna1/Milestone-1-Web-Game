@@ -144,6 +144,26 @@ var Game = {
             //player collides with bounds of game, update the x/y coordinates
             if(this.player.y <= 0) this.player.y = 0;
             else if(this.player.y >= (this.canvas.height - this.player.height)) this.player.y = (this.canvas.height - this.player.height);
+
+            //move the ball in the direction it is supposed to go
+            if(this.ball.moveY === DIRECTION.UP) this.ball.y -= (this.ball.speed / 1.5);
+            else if(this.ball.moveY === DIRECTION.DOWN) this.ball.y += (this.ball.speed / 1.5);
+            if(this.ball.moveX === DIRECTION.LEFT) this.ball.x -= this.ball.speed;
+            else if(this.ball.moveX === DIRECTION.RIGHT) this.ball.x += this.ball.speed;
+
+            //movements for cpu
+            if (this.ai.y > this.ball.y - (this.ai.height / 2)){
+                if (this.ball.moveX === DIRECTION.RIGHT) this.ai.y -= this.ai.speed / 1.5;
+                else this.ai.y -= this.ai.speed / 4;
+            }
+            if (this.ai.y < this.ball.y - (this.ai.height / 2)){
+                if (this.ball.moveX === DIRECTION.RIGHT) this.ai.y += this.ai.speed / 1.5;
+                else this.ai.y += this.ai.speed / 4;
+            }
+
+            //cpu wall collision
+            if (this.ai.y >= this.canvas.height - this.ai.height) this.ai.y = this.canvas.height - this.ai.height;
+            else if (this.ai.y <= 0) this.ai.y = 0
         }
     }
 
