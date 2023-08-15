@@ -65,8 +65,21 @@ var Game = {
         Pong.menu();
         Pong.listen();
     }
-//at the end of the game the canva, font size, and color will change
+
     endGameMenu: function(text) {
+        //at the end of the game the canva, font size, and color will change
+        Pong.context.font = '45px Courier New';
+        Pong.context.fillStyle = this.color;
+
+        //make a box behind user instructions text
+        Pong.context.fillRect(
+            Pong.canvas.width / 2 - 350, 
+            Pong.canvas.height / 2 -48,
+            700, 
+            100
+        );
+
+        //changing the background color on canvas
 
     }
 };
