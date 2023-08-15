@@ -129,6 +129,11 @@ var Game = {
             if(this.ball.y >= this.canvas.height - this.ball.height) this.ball.moveY = DIRECTION.UP;
 
             //move the player when triggered by keyboard event
+            if(this.player.move === DIRECTION.UP) this.player.y -= this.player.speed;
+            else if(this.player.move === DIRECTION.DOWN) this.player.y += this.player.speed;
+
+            //move the ball to the correct side at the start of a new level
+            //make direction of the ball random 
         }
     }
 
