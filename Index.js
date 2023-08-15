@@ -98,10 +98,40 @@ var Game = {
       Pong.draw();
       
       //changing the font size and color
-      Pong.context.font = '50px Courier New';
-        Pong.context.fillStyle = this.color;
+      this.context.font = '50px Courier New';
+      this.context.fillStyle = this.color;
       
+     //draw the rectangle behind the user instruction text to make functionality consistent
+        this.context.fillRect(
+            this.canvas.width / 2 - 350, 
+            this.canvas.height / 2 -48,
+            700, 
+            100
+        );
+      //changing the background color on canvas
+     this.context.fillStyle = '#ffffff';
+
+     //'press any key to begin' text 
+        this.context.fillText('Press any key to begin',
+            this.canvas.width / 2,
+            this.canvas.height / 2 + 15
+        );
+
+    },
+
+    //updates to move the player, ball..etc
+    update: function() {
+        if (!this.over){
+            //if the ball touches the edges of the gameboard
+            if(this.ball.x <=0) Pong._resetTurn.call(this, this.ai, this.player);
+            if(this.ball.x >= this.canvas.width - this.ball.width) Pong._resetTurn.call(this, this.player, this.ai);
+            if(this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
+            if(this.ball.y >= this.canvas.height - this.ball.height) this.ball.moveY = DIRECTION.UP;
+
+            //move the player when triggered by keyboard event
+        }
     }
+
 };
 
 
