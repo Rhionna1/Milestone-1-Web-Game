@@ -80,7 +80,27 @@ var Game = {
         );
 
         //changing the background color on canvas
+        Pong.context.fillStyle = '#ffffff';
+        
+        //add text to the end of the game
+        Pong.context.fillText(text, 
+            Pong.canvas.width / 2, 
+            Pong.canvas.height / 2 + 15
+        );
 
+        setTimeout(function (){
+            Pong = Object.assign({}, Game);
+            Pong.initialize();
+        }, 3000);
+    },
+
+    menu: function (){
+      Pong.draw();
+      
+      //changing the font size and color
+      Pong.context.font = '50px Courier New';
+        Pong.context.fillStyle = this.color;
+      
     }
 };
 
