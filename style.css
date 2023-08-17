@@ -1,12 +1,12 @@
 /* CSS styling for game board STARTS HERE */
 /*insert google font*/
-@import url('httpsL//fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 * {
     font-family: 'Poppins', sans-serif;
 }
-body {
+
+#gameBoard {
     text-align: center;
-    background-color: ghostwhite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +14,12 @@ body {
     flex-direction: column;
     position: fixed;
     width: 100%;
-
+}
+.backVid {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 /* CSS styling for game board ENDS HEERE */
+/* Style the video: 100% width and height to cover the entire window */

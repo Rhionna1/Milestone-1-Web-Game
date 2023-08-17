@@ -6,19 +6,19 @@
         <meta name="viewport" content="width=device-width, intial-scale=1.0">
         <title>Rhionna's Ping Pong </title>
         <!--Linking CSS to HTML-->
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="./style.css" />
     </head>
-    <body>
-        <div>
+    <body> 
+        <div id="gameBoard">
             <!--Video for background-->
-            <video autoplay muted loop id="backgroundVideo">
-                <source src="https://www.pexels.com/video/an-aerial-footage-of-crashing-waves-4662765/" type="video">
-            </video>
+            <video autoplay muted loop class="backVid">
+                <source src="./waveyy.mp4" type="video/mp4">
+            </video> 
+            <h1>Rhionna's Pong Game</h1>
+            <canvas></canvas>
+                <p>Press the up/down arrow keys to control your player</p>
+                <!--link html to javascript-->
+                <script src="./index.js"></script>
         </div>
-        <h1>Rhionna's Pong Game</h1>
-        <canvas></canvas>
-        <p>Press the up/down arrow keys to control your player</p>
-             <!--link html to javascript-->
-            <script src="index.js"></script>
     </body>  
 </html>

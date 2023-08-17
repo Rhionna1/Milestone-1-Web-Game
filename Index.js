@@ -8,7 +8,7 @@ var DIRECTION = {
 };
 
 var rounds = [5,5,3,3,2];
-var colors = ['#12104B', '#237A1B', '#AA66DD', '#8c52ff', '#2ecc71'];
+var colors = ['#12104B', '#237A1B', '#AA66DD', '#4d1319', '#2ecc71'];
 
 //function for ball
 var Ball = {
@@ -26,7 +26,7 @@ var Ball = {
 };
 
 //Function for the two lines that move up and down
-var Ai = {
+var Cpu = {
     new: function (side){
         return {
             width: 18,
@@ -52,15 +52,15 @@ var Game = {
         this.canvas.style.width = (this.canvas.width / 2) + 'px';
         this.canvas.style.height = (this.canvas.height / 2) + 'px';
 
-        this.player = Ai.new.call(this, 'left');
-        this.ai = Ai.new.call(this, 'right');
+        this.player = Cpu.new.call(this, 'left');
+        this.cpu = Cpu.new.call(this, 'right');
         this.ball = Ball.new.call(this); 
 
-        this.ai.speed = 5;
+        this.cpu.speed = 5;
         this.running = this.over = false; 
-        this.turn = this.ai;
+        this.turn = this.cpu;
         this.timer = this.round = 0; 
-        this.color = '#8c52ff';
+        this.color = '#4d1319';
 
         Pong.menu();
         Pong.listen();
@@ -123,8 +123,8 @@ var Game = {
     update: function() {
         if (!this.over){
             //if the ball touches the edges of the gameboard
-            if(this.ball.x <=0) Pong._resetTurn.call(this, this.ai, this.player);
-            if(this.ball.x >= this.canvas.width - this.ball.width) Pong._resetTurn.call(this, this.player, this.ai);
+            if(this.ball.x <=0) Pong._resetTurn.call(this, this.cpu, this.player);
+            if(this.ball.x >= this.canvas.width - this.ball.width) Pong._resetTurn.call(this, this.player, this.cpu);
             if(this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
             if(this.ball.y >= this.canvas.height - this.ball.height) this.ball.moveY = DIRECTION.UP;
 
@@ -152,18 +152,18 @@ var Game = {
             else if(this.ball.moveX === DIRECTION.RIGHT) this.ball.x += this.ball.speed;
 
             //movements for cpu
-            if (this.ai.y > this.ball.y - (this.ai.height / 2)){
-                if (this.ball.moveX === DIRECTION.RIGHT) this.ai.y -= this.ai.speed / 1.5;
-                else this.ai.y -= this.ai.speed / 4;
+            if (this.cpu.y > this.ball.y - (this.cpu.height / 2)){
+                if (this.ball.moveX === DIRECTION.RIGHT) this.cpu.y -= this.cpu.speed / 1.5;
+                else this.cpu.y -= this.cpu.speed / 4;
             }
-            if (this.ai.y < this.ball.y - (this.ai.height / 2)){
-                if (this.ball.moveX === DIRECTION.RIGHT) this.ai.y += this.ai.speed / 1.5;
-                else this.ai.y += this.ai.speed / 4;
+            if (this.cpu.y < this.ball.y - (this.cpu.height / 2)){
+                if (this.ball.moveX === DIRECTION.RIGHT) this.cpu.y += this.cpu.speed / 1.5;
+                else this.cpu.y += this.cpu.speed / 4;
             }
 
             //cpu wall collision
-            if (this.ai.y >= this.canvas.height - this.ai.height) this.ai.y = this.canvas.height - this.ai.height;
-            else if (this.ai.y <= 0) this.ai.y = 0;
+            if (this.cpu.y >= this.canvas.height - this.cpu.height) this.cpu.y = this.canvas.height - this.cpu.height;
+            else if (this.cpu.y <= 0) this.cpu.y = 0;
 
             //player1 ball collisions
             if(this.ball.x - this.ball.width <= this.player.x && this.ball.x >= this.player.x - this.player.width){
@@ -173,9 +173,9 @@ var Game = {
                 }
             }
             //cpu ball collisions
-            if(this.ball.x - this.ball.width <= this.ai.x && this.ball.x >= this.ai.x - this.ai.width){
-                if(this.ball.y <= this.ai.y + this.ai.height && this.ball.y + this.ball.height >= this.ai.y){
-                    this.ball.x = (this.ai.x - this.ball.width);
+            if(this.ball.x - this.ball.width <= this.cpu.x && this.ball.x >= this.cpu.x - this.cpu.width){
+                if(this.ball.y <= this.cpu.y + this.cpu.height && this.ball.y + this.ball.height >= this.cpu.y){
+                    this.ball.x = (this.cpu.x - this.ball.width);
                     this.ball.moveX = DIRECTION.LEFT;
                 }
             }
@@ -190,15 +190,15 @@ var Game = {
             //if we still have rounds to go then we reset everything and change the round number
           } else {
             this.color = this._generateRoundColor();
-            this.player.score = this.ai.score = 0;
+            this.player.score = this.cpu.score = 0;
             this.player.speed += 0.5;
-            this.ai.speed += 1;
+            this.cpu.speed += 1;
             this.ball.speed += 1;
             this.round += 1;
           }
         }
         //check to see if cpu won the round/game
-        else if (this.ai.score === rounds[this.round]) {
+        else if (this.cpu.score === rounds[this.round]) {
             this.over = true; 
             setTimeout (function (){ Pong.endGameMenu ('You Suck!'); }, 1000);
         }
@@ -235,10 +235,10 @@ var Game = {
         );
         //draw cpu paddle
         this.context.fillRect (
-            this.ai.x,
-            this.ai.y,
-            this.ai.width, 
-            this.ai.height
+            this.cpu.x,
+            this.cpu.y,
+            this.cpu.width, 
+            this.cpu.height
         );
 
         //draw the ball
@@ -271,7 +271,7 @@ var Game = {
         );
         //paddle score
         this.context.fillText(
-            this.ai.score.toString(),
+            this.cpu.score.toString(),
             (this.canvas.width / 2) + 300, 
             200
         );
