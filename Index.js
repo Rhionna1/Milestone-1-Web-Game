@@ -8,7 +8,7 @@ var DIRECTION = {
 };
 
 var rounds = [5,5,3,3,2];
-var colors = ['#12104B', '#237A1B', '#AA66DD', '#4d1319', '#2ecc71'];
+var colors = ['#12104B', '#237A1B', '#AA66DD', '#cb9e6e', '#2ecc71'];
 
 //function for ball
 var Ball = {
@@ -60,7 +60,7 @@ var Game = {
         this.running = this.over = false; 
         this.turn = this.cpu;
         this.timer = this.round = 0; 
-        this.color = '#4d1319';
+        this.color = '#cb9e6e';
 
         Pong.menu();
         Pong.listen();
